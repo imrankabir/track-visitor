@@ -1,5 +1,5 @@
-app = app ?? 'Track Visitor'; 
-VISITS_KEY = VISITS_KEY ?? 'track-visitor-visits';
+// app = app ?? 'Track Visitor'; 
+// VISITS_KEY = VISITS_KEY ?? 'track-visitor-visits';
 
 const pad = num => num.toString().padStart(2, '0');
 const formatDate = (date, dateDiveder = '-') => [date.getFullYear(), pad(date.getMonth() + 1), pad(date.getDate())].join(dateDiveder) + ' ' + [pad(date.getHours()), pad(date.getMinutes()), pad(date.getSeconds())].join(":");
@@ -38,5 +38,3 @@ async function persistVisits() {
   }
 
 }
-
-trackVisitor();
