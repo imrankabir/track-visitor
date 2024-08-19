@@ -1,6 +1,3 @@
-// app = app ?? 'Track Visitor'; 
-// VISITS_KEY = VISITS_KEY ?? 'track-visitor-visits';
-
 const pad = num => num.toString().padStart(2, '0');
 const formatDate = (date, dateDiveder = '-') => [date.getFullYear(), pad(date.getMonth() + 1), pad(date.getDate())].join(dateDiveder) + ' ' + [pad(date.getHours()), pad(date.getMinutes()), pad(date.getSeconds())].join(":");
 
@@ -15,15 +12,6 @@ async function getVisitorIP() {
     }
 }
 
-async function trackVisitor() {
-    const ip = await getVisitorIP();
-    const time = formatDate(new Date());
-    let visits = JSON.parse(localStorage.getItem(VISITS_KEY)) || [];
-    visits.push({ip, time, app});
-    localStorage.setItem(VISITS_KEY, JSON.stringify(visits));
-    persistVisits();
-}
-
 async function persistVisits() {
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
@@ -32,9 +20,16 @@ async function persistVisits() {
     body: JSON.stringify(localStorage.getItem(VISITS_KEY)),
     headers
   });
-
   if (response.ok === true && response.status === 200) {
     localStorage.setItem(VISITS_KEY, JSON.stringify([]));
   }
+}
 
+async function trackVisitor() {
+    const ip = await getVisitorIP();
+    const time = formatDate(new Date());
+    let visits = JSON.parse(localStorage.getItem(VISITS_KEY)) || [];
+    visits.push({ip, time, app});
+    localStorage.setItem(VISITS_KEY, JSON.stringify(visits));
+    persistVisits();
 }
