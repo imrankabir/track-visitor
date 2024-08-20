@@ -15,7 +15,7 @@ async function getVisitorIP() {
 async function persistVisits() {
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
-  const response = await fetch('https://enabled-humpback-lively.ngrok-free.app/save-visits.php', {
+  const response = await fetch('https://bluegill-cute-leopard.ngrok-free.app/save-visits.php', {
     method: 'POST',
     body: JSON.stringify(localStorage.getItem(VISITS_KEY)),
     headers
