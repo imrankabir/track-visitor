@@ -1,6 +1,6 @@
 {
   "name": "track-visitor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A JavaScript library to track website visitors.",
   "main": "track-visitor.js",
   "repository": {
